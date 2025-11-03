@@ -2,54 +2,50 @@ package com.noxvodia.twitteer.security;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
-/**
- * Class to configure AWS Cognito as an OAuth 2.0 authorizer with Spring
- * Security.
- * In this configuration, we specify our OAuth Client.
- * We also declare that all requests must come from an authenticated user.
- * Finally, we configure our logout handler.
- */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
         @Bean
-        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-                CognitoLogoutHandler cognitoLogoutHandler = new CognitoLogoutHandler();
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    CognitoLogoutHandler cognitoLogoutHandler = new CognitoLogoutHandler();
 
-                http
-                                .cors(cors -> cors.configurationSource(request -> {
-                                        CorsConfiguration config = new CorsConfiguration();
-                                        config.setAllowedOrigins(List.of("http://localhost:3000"));
-                                        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                                        config.setAllowedHeaders(List.of("*"));
-                                        config.setAllowCredentials(true);
-                                        return config;
-                                }))
-                                .csrf(csrf -> csrf.disable())
+    http
+        .cors(cors -> cors.configurationSource(request -> {
+            CorsConfiguration config = new CorsConfiguration();
+            config.setAllowedOrigins(List.of(
+                "http://localhost:3000", // local dev
+                "https://xxelingexx.github.io/AREP-T7-Front" // GitHub Pages
+            ));
+            config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            config.setAllowedHeaders(List.of("*"));
+            config.setAllowCredentials(true);
+            return config;
+        }))
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/api/**").authenticated()
+            .anyRequest().permitAll()
+        )
+        .logout(logout -> logout
+            .logoutSuccessHandler(cognitoLogoutHandler)
+            .logoutSuccessUrl("https://xxelingexx.github.io/AREP-T7-Front") // si quieres, puedes agregar lógica condicional para Pages
+        )
+        .oauth2ResourceServer(oauth2 -> oauth2
+            .jwt(jwt -> jwt
+                .jwkSetUri("https://cognito-idp.us-east-1.amazonaws.com/us-east-1_rgr4mLkxk/.well-known/jwks.json")
+            )
+        );
 
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/api/**").authenticated()
-                                                .anyRequest().permitAll())
-                                .oauth2Login(oauth -> oauth
-                                                .defaultSuccessUrl("http://localhost:3000/profileCreator", true)) 
-                                                
+    return http.build();
+}
 
-                                .logout(logout -> logout
-                                                .logoutSuccessHandler(cognitoLogoutHandler)
-                                                .logoutSuccessUrl("http://localhost:3000") // vuelve al index después
-                                                                                           // del logout
-                                );
-
-                return http.build();
-        }
 }

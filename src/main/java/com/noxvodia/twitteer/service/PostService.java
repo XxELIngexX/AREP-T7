@@ -91,7 +91,7 @@ public class PostService {
         System.out.println("Soft deleting post with ID: " + postId);
         Post post = getPostById(postId);
         post.setIsDeleted(true);
-        postRepository.save(post);
+        postRepository.delete(post);
     }
 
     // public void permanentlyDeletePost(UUID postId) {

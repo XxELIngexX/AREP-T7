@@ -4,6 +4,7 @@ import java.util.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import com.noxvodia.twitteer.model.User;
@@ -30,7 +31,6 @@ public class UserController {
         }
     }
 
-   
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable UUID userId) {
         try {
@@ -40,13 +40,14 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
- 
+
     @GetMapping("/me")
-    @ResponseBody
-    public ResponseEntity<User> getCurrentUser(OAuth2AuthenticationToken authentication) {
-        String email = authentication.getPrincipal().getAttribute("email");
+    public ResponseEntity<User> getCurrentUser(JwtAuthenticationToken jwtAuth) {
+        System.out.println("Claims => " + jwtAuth.getToken().getClaims());
+        String email = jwtAuth.getToken().getClaimAsString("email");
         User user = userService.getUserByEmail(email);
         return ResponseEntity.ok(user);
+        
     }
 
     @PutMapping("/{userId}")

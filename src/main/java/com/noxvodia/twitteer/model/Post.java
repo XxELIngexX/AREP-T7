@@ -7,7 +7,6 @@ import lombok.*;
 @Entity
 @Table(name = "posts", indexes = {
     @Index(name = "idx_user_created", columnList = "user_id, created_at"),
-    @Index(name = "idx_stream_created", columnList = "stream_id, created_at"),
     @Index(name = "idx_created_at", columnList = "created_at")
 })
 @Data
