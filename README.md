@@ -3,7 +3,7 @@
 TwitteerCopy es una plataforma de microblog estilo Twitter donde los usuarios pueden registrarse, autenticarse y publicar mensajes de hasta 140 caracteres. El sistema utiliza una arquitectura escalable basada en microservicios en AWS Lambda, con autenticación segura mediante JWT emitido por AWS Cognito.
 
 ## 📋 Tabla de Contenidos
-
+- [Demostracion en video](#Video-del-experimento-funcionando)
 - [Descripción General](#descripción-general)
 - [Arquitectura](#arquitectura)
 - [Requisitos](#requisitos)
@@ -15,6 +15,14 @@ TwitteerCopy es una plataforma de microblog estilo Twitter donde los usuarios pu
 - [Base de Datos](#base-de-datos)
 
 ---
+
+## Video del experimento funcionando
+
+Puedes ver el video completo del experimento funcionando en YouTube:
+
+[![Ver video del experimento](https://img.youtube.com/vi/dZqwC45EtCY/0.jpg)](https://youtu.be/dZqwC45EtCY)
+
+Haz clic en la imagen para abrir el video en YouTube.
 
 ## 🎯 Descripción General
 
