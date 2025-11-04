@@ -13,7 +13,6 @@ TwitteerCopy es una plataforma de microblog estilo Twitter donde los usuarios pu
 - [Microservicios](#microservicios)
 - [Configuración CORS y Seguridad](#configuración-cors-y-seguridad)
 - [Base de Datos](#base-de-datos)
-- [Contacto](#contacto)
 
 ---
 
@@ -585,11 +584,9 @@ GSI: userId-createdAt (para consultas por usuario)
 
 ---
 
-## 📞 Contacto
 
-Para preguntas o contribuciones, por favor abre un issue en el repositorio o contacta al equipo de desarrollo.
 
----
-
-**Última actualización**: Enero 2025  
+**Última actualización**: noviembre 2025  
 **Versión**: 1.0.0
+**propietario**: Cesar Amaya Gomez
+
