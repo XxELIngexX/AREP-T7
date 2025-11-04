@@ -1,6 +1,6 @@
-# Twitteer - Microblog Serverless
+# TwitteerCopy - Microblog Serverless
 
-Twitteer es una plataforma de microblog estilo Twitter donde los usuarios pueden registrarse, autenticarse y publicar mensajes de hasta 140 caracteres. El sistema utiliza una arquitectura escalable basada en microservicios serverless en AWS Lambda, con autenticación segura mediante JWT emitido por AWS Cognito.
+TwitteerCopy es una plataforma de microblog estilo Twitter donde los usuarios pueden registrarse, autenticarse y publicar mensajes de hasta 140 caracteres. El sistema utiliza una arquitectura escalable basada en microservicios en AWS Lambda, con autenticación segura mediante JWT emitido por AWS Cognito.
 
 ## 📋 Tabla de Contenidos
 
@@ -19,7 +19,7 @@ Twitteer es una plataforma de microblog estilo Twitter donde los usuarios pueden
 
 ## 🎯 Descripción General
 
-Twitteer comenzó como un monolito en Spring Boot y ha evolucionado hacia una arquitectura de microservicios serverless. Los componentes principales son:
+TwitteerCopy comenzó como un monolito en Spring Boot y ha evolucionado hacia una arquitectura de microservicios serverless. Los componentes principales son:
 
 - **Frontend**: JavaScript alojado en GitHub Pages o S3 público
 - **Autenticación**: AWS Cognito con tokens JWT
@@ -110,8 +110,8 @@ Cada usuario puede:
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/usuario/twitteer.git
-cd twitteer
+git clone https://github.com/XxELIngexX/AREP-T7
+cd AREP-T7
 ```
 
 ### 2. Configurar Variables de Entorno
@@ -129,16 +129,16 @@ COGNITO_CLIENT_ID=client_id_xxxx
 COGNITO_DOMAIN=https://twitteer-auth.auth.us-east-1.amazoncognito.com
 
 # API Gateway
-API_BASE_URL=https://api-xxxxx.execute-api.us-east-1.amazonaws.com/prod
+API_BASE_URL=https://api-xxxxx.execute-api.us-east-1.amazonaws.com/
 
 # Frontend
-FRONTEND_URL=https://usuario.github.io/twitteer
+FRONTEND_URL= https://xxelingexx.github.io/AREP-T7-Front/
 # o
-FRONTEND_URL=https://my-bucket.s3.us-east-1.amazonaws.com
+FRONTEND_URL=https://twitter-Copy.s3.us-east-1.amazonaws.com
 
 # Database
 DB_HOST=database-instance.xxxxx.us-east-1.rds.amazonaws.com
-DB_NAME=twitteer
+DB_NAME=postgres
 DB_USER=admin
 DB_PASSWORD=secure_password
 ```
